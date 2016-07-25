@@ -1,14 +1,11 @@
 import bottle
 import begin
-import socket
-
-fqdn = socket.gethostname()
 
 @bottle.route("/")
 def index():
-	return fqdn + "\n"
+	return b"hello"
 
 
 @begin.start
-def run(host="0.0.0.0", port=9080):
+def run(host="0.0.0.0", port=8080):
     bottle.run(host=host, port=port)
