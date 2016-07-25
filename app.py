@@ -1,14 +1,22 @@
-import bottle
-import begin
-import socket
+import http.server
 
-fqdn = socket.gethostname()
+PORT = 8080 
 
-@bottle.route("/")
-def index():
-	return fqdn + "\n"
+class handler(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200, "OK")
+        self.send_header("Content-type", "text")
+        self.end_headers()
+        self.flush_headers()
+        self.wfile.write(b"hello")
 
 
-@begin.start
-def run(host="0.0.0.0", port=9080):
-    bottle.run(host=host, port=port)
+def run(server_class=http.server.HTTPServer,
+        handler_class=handler):
+    print("serving at port {}".format(PORT))
+    server_address = ("", PORT)
+    httpd = server_class(server_address, handler_class)
+    httpd.serve_forever()
+
+if __name__ == '__main__':
+    run()
