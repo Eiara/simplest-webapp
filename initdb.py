@@ -2,13 +2,15 @@ import connectdb
 import mydb
 from sqlalchemy.orm import sessionmaker
 
-engine = connectdb.engine()
-Session = sessionmaker(bind=engine)
+def create_database(engine):
+    engine.execute("CREATE DATABASE greeting;")
 
-session = Session()
+def init(engine):
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-mydb.Base.metadata.create_all(engine)
-row = mydb.hello(value="database hello", id=1)
+    mydb.Base.metadata.create_all(engine)
+    row = mydb.hello(value="database hello", id=1)
 
-session.add(row)
-session.commit()
+    session.add(row)
+    session.commit()

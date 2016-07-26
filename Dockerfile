@@ -12,4 +12,5 @@ RUN /usr/bin/python3 /app/initdb.py
 
 EXPOSE 8080
 
-CMD /usr/bin/python3 /app/app.py
+# CMD /usr/bin/python3 /app/app.py
+CMD /bin/bash /app/waitloop.sh

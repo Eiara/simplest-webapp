@@ -1,0 +1,1 @@
+psql -U postgres --dbname=postgres -f /app/create_db.sql

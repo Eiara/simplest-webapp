@@ -3,16 +3,22 @@ import begin
 import mydb
 import connectdb
 from sqlalchemy.orm import sessionmaker
+import sys
 
-engine = connectdb.engine()
+engine = connectdb.engine(database="greeting")
+
 Session = sessionmaker(bind=engine)
 
 session = Session()
 
 @bottle.route("/")
 def index():
-    greeting = session.query(mydb.hello).first()
-    return greeting.value
+    try:
+        greeting = session.query(mydb.hello).first()
+        return greeting.value
+    except:
+        session.rollback()
+        return "ACK DATABASE ERROR"
 
 
 @begin.start
