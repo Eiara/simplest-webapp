@@ -1,9 +1,18 @@
 import bottle
 import begin
+import mydb
+import connectdb
+from sqlalchemy.orm import sessionmaker
+
+engine = connectdb.create_engine('sqlite:///app.db')
+Session = sessionmaker(bind=engine)
+
+session = Session()
 
 @bottle.route("/")
 def index():
-	return b"hello"
+    greeting = session.query(mydb.hello).first()
+    return greeting.value
 
 
 @begin.start

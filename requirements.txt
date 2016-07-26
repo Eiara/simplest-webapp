@@ -1,3 +1,4 @@
 begins==0.9
 bottle==0.12.8
 funcsigs==0.4
+sqlalchemy==1.0.14
