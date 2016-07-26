@@ -4,7 +4,7 @@ import mydb
 import connectdb
 from sqlalchemy.orm import sessionmaker
 
-engine = connectdb.create_engine('sqlite:///app.db')
+engine = connectdb.engine()
 Session = sessionmaker(bind=engine)
 
 session = Session()
