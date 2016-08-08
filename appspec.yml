@@ -7,9 +7,8 @@ files:
     destination: /var/app/app.py
 hooks:
   BeforeInstall:
-    - location: build/mkdir.sh
+    - location: scripts/mkdir.sh
   ApplicationStart:
-    - location: build/startup.sh
-      timeout: 3600
+    - location: scripts/startup.sh
   # ValidateService:
   #   - location: Scripts/MonitorService.sh
