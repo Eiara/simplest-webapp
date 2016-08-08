@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: etc/init/simplest.conf
+    destination: /etc/init/simplest.conf
+  - source: app.py
+    destination: /var/app/app.py
+hooks:
+  BeforeInstall:
+    - location: build/mkdir.sh
+  ApplicationStart:
+    - location: build/startup.sh
+      timeout: 3600
+  # ValidateService:
+  #   - location: Scripts/MonitorService.sh
