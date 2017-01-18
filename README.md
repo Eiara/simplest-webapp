@@ -1,2 +1,4 @@
 # simplest-webapp
-The simplest possible Python webapp I could make, using Bottle and Begins to handle webserving and arg parsing. 
+The simplest possible Python webapp.
+
+Uses pure Python at the most basic, more advanced versions include Bottle and more complex arg parsing tools.
